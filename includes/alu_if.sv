@@ -1,4 +1,7 @@
 interface alu_if;
+import alu_pkg::*;
+    command_monitor command_monitor_h;
+    result_monitor  result_monitor_h;
     bit [31:0] a;
     bit [31:0] b;
     bit [2:0] op_code;
