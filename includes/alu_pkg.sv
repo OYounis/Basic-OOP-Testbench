@@ -11,11 +11,11 @@ package alu_pkg;
     bit carry;
     bit [31:0] out;
    } rslt;
-   
+`include "command_transaction.svh"
+`include "result_transaction.svh"
 `include "monitor.svh"
 `include "command_monitor.svh"
 `include "result_monitor.svh"
-`include "random.svh"
 `include "coverage.svh"
 `include "tester.svh"
 `include "scoreboard.svh"

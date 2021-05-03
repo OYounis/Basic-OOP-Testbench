@@ -2,12 +2,14 @@ class tester;
 
     virtual interface alu_if alu_vi;
     string TESTNAME;
-    random randomizer;
+    command_transaction randomizer;
 
-    function new(virtual interface alu_if alu_if_handle, random random_h);
+    function new(virtual interface alu_if alu_if_handle);
         alu_vi = alu_if_handle;
-        randomizer = random_h;
         $value$plusargs("TESTNAME=%s",TESTNAME);
+        randomizer = new(alu_vi);
+        alu_vi.cmd_transaction_h = randomizer;
+        //randomizer = alu_vi.cmd_transaction_h;
     endfunction 
 
     task execute();

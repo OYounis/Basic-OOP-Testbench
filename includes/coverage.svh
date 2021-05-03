@@ -1,9 +1,8 @@
 class coverage;
     bit [2:0] op_code;
     virtual interface alu_if alu_vi;
-    command_monitor command_monitor_h;
-    cmd cmd_v;
-    
+    command_monitor command_monitor_h; 
+    command_transaction cmd_v;   
     
     covergroup op_cov;
         coverpoint op_code{
@@ -25,11 +24,11 @@ class coverage;
     function new (virtual interface alu_if alu_if_handle);
         op_cov = new();
         alu_vi = alu_if_handle;
+        cmd_v = new(alu_vi);
         command_monitor_h = alu_vi.command_monitor_h; 
     endfunction
     
     task execute();
-      
         forever begin
             @(negedge alu_vi.clk);
             cmd_v = command_monitor_h.get_cmd();
